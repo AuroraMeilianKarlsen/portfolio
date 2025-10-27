@@ -1,16 +1,46 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+En moderne portfolio-side bygget med Next.js, React og Tailwind CSS.
 
-Currently, two official plugins are available:
+## Teknologier
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Next.js 15](https://nextjs.org/) - React-rammeverket
+- [React 19](https://react.dev/) - UI-bibliotek
+- [Tailwind CSS](https://tailwindcss.com/) - CSS-rammeverk
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
 
-## React Compiler
+## Kom i gang
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Første gang, installer avhengighetene:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Kjør utviklingsserveren:
+
+```bash
+npm run dev
+```
+
+Åpne [http://localhost:3000](http://localhost:3000) i nettleseren for å se resultatet.
+
+## Scripts
+
+- `npm run dev` - Starter utviklingsserveren
+- `npm run build` - Bygger produksjon-klargjort versjon
+- `npm start` - Starter produksjonsserveren
+- `npm run lint` - Kjører ESLint
+
+## Bygg for produksjon
+
+```bash
+npm run build
+npm start
+```
+
+## Flere ressurser
+
+- [Next.js dokumentasjon](https://nextjs.org/docs)
+- [React dokumentasjon](https://react.dev/)
+- [Tailwind CSS dokumentasjon](https://tailwindcss.com/docs)
