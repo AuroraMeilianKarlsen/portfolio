@@ -17,17 +17,17 @@ const images = [
 ];
 
 const transformStyles = [
-  'rotate(8deg) translate(-400px)',
-  'rotate(5deg) translate(-300px)',
-  'rotate(-2deg) translate(-200px)',
-  'rotate(3deg) translate(-100px)',
-  'rotate(-10deg) translate(-50px)',
+  'rotate(0deg) translate(-500px)',
+  'rotate(0deg) translate(-400px)',
+  'rotate(0deg) translate(-300px)',
+  'rotate(0deg) translate(-200px)',
+  'rotate(0deg) translate(-100px)',
   'rotate(0deg)',
-  'rotate(2deg) translate(50px)',
-  'rotate(-6deg) translate(100px)',
-  'rotate(5deg) translate(200px)',
-  'rotate(-5deg) translate(300px)',
-  'rotate(-8deg) translate(400px)',
+  'rotate(0deg) translate(100px)',
+  'rotate(0deg) translate(200px)',
+  'rotate(0deg) translate(300px)',
+  'rotate(0deg) translate(400px)',
+  'rotate(0deg) translate(500px)',
 ];
 
 export default function Home() {
@@ -79,7 +79,7 @@ export default function Home() {
             <BounceCards
               className="custom-bounceCards"
               images={images}
-              containerWidth={1200}
+              containerWidth={1000}
               containerHeight={500}
               animationDelay={1}
               animationStagger={0.08}
