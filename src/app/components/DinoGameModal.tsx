@@ -99,14 +99,9 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
       // Hale
       ctx.fillStyle = '#FF8DA1';
-      ctx.beginPath();
-      ctx.moveTo(dino.x, dino.y +10); // Startpunkt ved kroppen
-      ctx.lineTo(dino.x - 15, dino.y + 8); // Spiss til venstre
-      ctx.lineTo(dino.x - 0, dino.y + 3); // Nedre høyre punkt
-      ctx.closePath();
-      ctx.fill();
+      ctx.fillRect(dino.x - 9, dino.y + 9, 10, 5);
 
-      // Bein
+      // Bein 
       ctx.fillRect(dino.x + 5, dino.y + dino.height, 8, 8);
       ctx.fillRect(dino.x + 27, dino.y + dino.height, 8, 8);
     }
