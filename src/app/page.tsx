@@ -1,6 +1,10 @@
+'use client';
+
+import { useState } from 'react';
 import ClientTyping from './components/ClientTyping';
 import Image from 'next/image';
 import BounceCards from './components/BounceCards';
+import DinoGameModal from './components/DinoGameModal';
 
 const images = [
   '/pictureGallery/Skjermbilde 2025-10-28 kl. 23.12.52.jpg',
@@ -31,6 +35,8 @@ const transformStyles = [
 ];
 
 export default function Home() {
+  const [isGameOpen, setIsGameOpen] = useState(false);
+
   return (
     <div className="bg-gray-900 text-white">
       <section
@@ -100,8 +106,19 @@ export default function Home() {
             <li>Node.js</li>
             <li>Design og UX</li>
           </ul>
+
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setIsGameOpen(true)}
+              className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition-colors text-lg font-semibold border-2 border-gray-600 hover:border-gray-500"
+            >
+              Spill mitt favoritt spill 🦕
+            </button>
+          </div>
         </div>
       </section>
+
+      <DinoGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
     </div>
   );
 }
