@@ -106,7 +106,11 @@ export default function Home() {
             <li>Node.js</li>
             <li>Design og UX</li>
           </ul>
+        </div>
+      </section>
 
+      <section id="game" className="min-h-screen px-6 py-24 scroll-mt-20">
+        <div className="mx-auto max-w-3xl">
           <div className="mt-8 flex justify-center">
             <button
               onClick={() => setIsGameOpen(true)}
@@ -119,6 +123,43 @@ export default function Home() {
       </section>
 
       <DinoGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
+
+      <section id="contact" className="min-h-screen px-6 py-24 scroll-mt-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl font-semibold">Kontakt</h2>
+          <p className="mt-4 text-gray-300">
+            Ønsker du å komme i kontakt med meg?
+          </p>
+          <div className="mt-6 space-y-4 text-gray-300">
+            <div>
+              <a
+                href="mailto:aurora.mk@icloud.com"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                aurora.mk@icloud.com
+              </a>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+              <a
+                href="https://www.linkedin.com/in/aurora-meilian-karlsen-970b0b2b4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/AuroraMeilianKarlsen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
