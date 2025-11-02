@@ -5,6 +5,7 @@ import ClientTyping from './components/ClientTyping';
 import Image from 'next/image';
 import BounceCards from './components/BounceCards';
 import DinoGameModal from './components/DinoGameModal';
+import Card from './components/Card';
 
 const images = [
   '/pictureGallery/Skjermbilde 2025-10-28 kl. 23.12.52.jpg',
@@ -67,7 +68,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="min-h-screen px-6 py-24 scroll-mt-20">
+      <section id="about" className="px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-semibold">Om meg</h2>
           <p className="mt-4 text-gray-300">
@@ -97,19 +98,145 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="skills" className="min-h-screen px-6 py-24 scroll-mt-20">
+      <section id="skills" className="px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-semibold">Skills</h2>
-          <ul className="mt-4 grid grid-cols-1 gap-2 text-gray-300 sm:grid-cols-2">
-            <li>TypeScript / React / Next.js</li>
-            <li>Tailwind CSS</li>
-            <li>Node.js</li>
-            <li>Design og UX</li>
-          </ul>
+          <div className="mt-8 grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/typescript.svg"
+                alt="TypeScript"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">TypeScript</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/javascript.svg"
+                alt="JavaScript"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">JavaScript</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/react.svg"
+                alt="React"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">React</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/nextdotjs.svg"
+                alt="Next.js"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Next.js</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/html5.svg"
+                alt="HTML5"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">HTML5</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/css.svg"
+                alt="CSS"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">CSS</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/git.svg"
+                alt="Git"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Git</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/github.svg"
+                alt="GitHub"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">GitHub</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/docker.svg"
+                alt="Docker"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Docker</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/python.svg"
+                alt="Python"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Python</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/firebase.svg"
+                alt="Firebase"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Firebase</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/spring.svg"
+                alt="Spring"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Spring</span>
+            </Card>
+            <Card className="flex flex-col items-center gap-2">
+              <Image
+                src="/skillLogo/springboot.svg"
+                alt="Spring Boot"
+                width={64}
+                height={64}
+                className="h-16 w-16"
+              />
+              <span className="text-sm text-gray-300">Spring Boot</span>
+            </Card>
+          </div>
         </div>
       </section>
 
-      <section id="game" className="min-h-screen px-6 py-24 scroll-mt-20">
+      <section id="game" className="px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <div className="mt-8 flex justify-center">
             <button
@@ -124,39 +251,41 @@ export default function Home() {
 
       <DinoGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
 
-      <section id="contact" className="min-h-screen px-6 py-24 scroll-mt-20">
+      <section id="contact" className="px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-semibold">Kontakt</h2>
           <p className="mt-4 text-gray-300">
             Ønsker du å komme i kontakt med meg?
           </p>
-          <div className="mt-6 space-y-4 text-gray-300">
-            <div>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <Card className="text-center">
               <a
                 href="mailto:aurora.mk@icloud.com"
-                className="text-blue-400 hover:text-blue-300 transition-colors"
+                className="text-blue-400 hover:text-blue-300 transition-colors block"
               >
                 aurora.mk@icloud.com
               </a>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+            </Card>
+            <Card className="text-center">
               <a
                 href="https://www.linkedin.com/in/aurora-meilian-karlsen-970b0b2b4/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors"
+                className="text-blue-400 hover:text-blue-300 transition-colors block"
               >
                 LinkedIn
               </a>
+            </Card>
+            <Card className="text-center">
               <a
                 href="https://github.com/AuroraMeilianKarlsen"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 transition-colors"
+                className="text-blue-400 hover:text-blue-300 transition-colors block"
               >
                 GitHub
               </a>
-            </div>
+            </Card>
           </div>
         </div>
       </section>

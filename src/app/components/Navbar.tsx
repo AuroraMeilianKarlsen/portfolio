@@ -18,6 +18,13 @@ export default function Navbar() {
           <a href="#skills" className="text-white/80 hover:text-indigo-400">
             Skills
           </a>
+          <a href="#game" className="text-white/80 hover:text-indigo-400">
+            🦕
+          </a>
+          <a href="#contact" className="text-white/80 hover:text-indigo-400">
+            Contact
+          </a>
+          
         </div>
       </div>
     </nav>
