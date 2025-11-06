@@ -49,12 +49,23 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     let animationFrameId: number;
     let gameRunning = false;
     let localScore = 0;
+    let dinoImage: HTMLImageElement | null = null;
+    let imageLoaded = false;
 
+    // Last inn dino-bildet
+    const img = new Image();
+    img.src = '/Dino.png';
+    img.onload = () => {
+      dinoImage = img;
+      imageLoaded = true;
+    };
+
+    //skalerer dino
     const dino: Dino = {
       x: 50,
-      y: 172, // Justert: ground.y (200) - dino.height (20) - bein høyde (8) = 172
-      width: 40,
-      height: 20,
+      y: 136, // Justert: ground.y (200) - dino.height (64) = 136
+      width: 64,
+      height: 64, // Pixelart dimensjoner: 64x64
       velocityY: 0,
       jumping: false,
       gravity: 0.6,
@@ -72,38 +83,14 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     function drawDino() {
       if (!ctx) return;
 
-      ctx.fillStyle = '#FF8DA1';
-
-      // Kropp
-      ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
-
-      // hals
-      const neckWidth = 10; // Bredden på halsen
-      const neckHeight = 20; // Høyden på halsen (hvor lang oppover)
-      const neckX = dino.x + dino.width / 1 - neckWidth; //hals possisjon
-      const neckY = dino.y - neckHeight; // Start halsen oppover fra toppen av kroppen
-
-      ctx.fillRect(neckX, neckY, neckWidth, neckHeight);
-
-      // hode
-      const headWidth = 18; // Bredden på hodet
-      const headHeight = 10; // Høyden på hodet
-      const headX = dino.x + dino.width / 1.33; // setter hode på halsen
-      const headY = neckY - headHeight + 4; // Plasser hodet over halsen
-
-      ctx.fillRect(headX, headY, headWidth, headHeight);
-
-      // Øye
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(headX + 11, headY + 3, 4, 4);
-
-      // Hale
-      ctx.fillStyle = '#FF8DA1';
-      ctx.fillRect(dino.x - 9, dino.y + 9, 10, 5);
-
-      // Bein 
-      ctx.fillRect(dino.x + 5, dino.y + dino.height, 8, 8);
-      ctx.fillRect(dino.x + 27, dino.y + dino.height, 8, 8);
+      // Hvis bildet er lastet, tegn det
+      if (dinoImage && imageLoaded) {
+        ctx.drawImage(dinoImage, dino.x, dino.y, dino.width, dino.height);
+      } else {
+        // Fallback: tegn en enkel rektangel mens bildet laster
+        ctx.fillStyle = '#FF8DA1';
+        ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+      }
     }
 
     function drawObstacle(obstacle: Obstacle) {
@@ -154,8 +141,8 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         dino.velocityY += dino.gravity;
         dino.y += dino.velocityY;
 
-        if (dino.y >= 172) {
-          dino.y = 172;
+        if (dino.y >= 136) {
+          dino.y = 136;
           dino.velocityY = 0;
           dino.jumping = false;
         }
@@ -202,7 +189,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     }
 
     function reset() {
-      dino.y = 172;
+      dino.y = 136;
       dino.velocityY = 0;
       dino.jumping = false;
       obstacles = [];
