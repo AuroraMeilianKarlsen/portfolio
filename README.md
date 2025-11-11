@@ -9,7 +9,12 @@ En moderne portfolio-side bygget med Next.js, React og Tailwind CSS.
 - [Tailwind CSS](https://tailwindcss.com/) - CSS-rammeverk
 - [TypeScript](https://www.typescriptlang.org/) - Type safety
 
-## Kom i gang
+
+## For å besøke nettsiden:
+https://auroramk-portfolio.vercel.app/
+
+
+## For å kjøre lokalt: 
 
 Første gang, installer avhengighetene:
 
@@ -38,9 +43,3 @@ npm run dev
 npm run build
 npm start
 ```
-
-## Flere ressurser
-
-- [Next.js dokumentasjon](https://nextjs.org/docs)
-- [React dokumentasjon](https://react.dev/)
-- [Tailwind CSS dokumentasjon](https://tailwindcss.com/docs)
