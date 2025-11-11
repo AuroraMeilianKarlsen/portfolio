@@ -7,7 +7,7 @@ export default function ClientTyping() {
     <TextType
       as="span"
       className="text-indigo-400"
-      text={['velkommen til min portfolio', 'her kan du se litt mer om meg :)', 'bare tull og tøys']}
+      text={['velkommen til min portfolio', 'her kan du se litt mer om meg']}
       typingSpeed={75}
       pauseDuration={1500}
       deletingSpeed={40}

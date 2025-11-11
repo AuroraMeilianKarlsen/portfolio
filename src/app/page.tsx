@@ -52,11 +52,14 @@ export default function Home() {
                 <ClientTyping />
               </span>
             </h1>
-            <p className="mt-4 text-gray-300">Velkommen til min side!</p>
+            <p className="mt-4 text-gray-300">
+              {' '}
+              Informatikkstudent, og bachelor i Celle og Molekylær Biologi
+            </p>
           </div>
           <div className="flex justify-center lg:justify-end">
             <Image
-              src="/Aurora.jpg"
+              src="/AuroraMKarlsenPortrait.png"
               alt="Profilbilde"
               width={440}
               height={560}
@@ -72,9 +75,11 @@ export default function Home() {
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-semibold">Om meg</h2>
           <p className="mt-4 text-gray-300">
-            Jeg er en utvikler som liker å bygge enkle og brukervennlige
-            løsninger. Her kan du lese litt om meg, bakgrunnen min og hva jeg
-            jobber med for tiden.
+            Mitt navn er Aurora Meilian Karlsen, og jeg studerer 3. året på
+            bachelor i informatikk ved NTNU. Jeg er en utvikler som liker å
+            bygge enkle og brukervennlige løsninger. Siden er mest for gøy og
+            egen læring. Her har jeg utforsket kreativitet og testet ut litt
+            interaktivt design.
           </p>
 
           <p className="mt-4 text-gray-300">
@@ -101,137 +106,158 @@ export default function Home() {
       <section id="skills" className="px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-semibold">Skills</h2>
-          <div className="mt-8 grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/typescript.svg"
-                alt="TypeScript"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">TypeScript</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/javascript.svg"
-                alt="JavaScript"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">JavaScript</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/react.svg"
-                alt="React"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">React</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/nextdotjs.svg"
-                alt="Next.js"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Next.js</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/html5.svg"
-                alt="HTML5"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">HTML5</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/css.svg"
-                alt="CSS"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">CSS</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/git.svg"
-                alt="Git"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Git</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/github.svg"
-                alt="GitHub"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">GitHub</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/docker.svg"
-                alt="Docker"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Docker</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/python.svg"
-                alt="Python"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Python</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/firebase.svg"
-                alt="Firebase"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Firebase</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/spring.svg"
-                alt="Spring"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Spring</span>
-            </Card>
-            <Card className="flex flex-col items-center gap-2">
-              <Image
-                src="/skillLogo/springboot.svg"
-                alt="Spring Boot"
-                width={64}
-                height={64}
-                className="h-16 w-16"
-              />
-              <span className="text-sm text-gray-300">Spring Boot</span>
-            </Card>
+
+          {/* Språk */}
+          <div className="mt-8">
+            <h3 className="text-xl font-medium text-gray-200 mb-4">Språk</h3>
+            <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/typescript.svg"
+                  alt="TypeScript"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">TypeScript</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/javascript.svg"
+                  alt="JavaScript"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">JavaScript</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/python.svg"
+                  alt="Python"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Python</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/html5.svg"
+                  alt="HTML5"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">HTML5</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/css.svg"
+                  alt="CSS"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">CSS</span>
+              </Card>
+            </div>
+          </div>
+
+          {/* Teknologier */}
+          <div className="mt-12">
+            <h3 className="text-xl font-medium text-gray-200 mb-4">
+              Teknologier
+            </h3>
+            <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/react.svg"
+                  alt="React"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">React</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/nextdotjs.svg"
+                  alt="Next.js"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Next.js</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/firebase.svg"
+                  alt="Firebase"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Firebase</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/spring.svg"
+                  alt="Spring"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Spring</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/springboot.svg"
+                  alt="Spring Boot"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Spring Boot</span>
+              </Card>
+            </div>
+          </div>
+
+          {/* Verktøy */}
+          <div className="mt-12">
+            <h3 className="text-xl font-medium text-gray-200 mb-4">Verktøy</h3>
+            <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/git.svg"
+                  alt="Git"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Git</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/github.svg"
+                  alt="GitHub"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">GitHub</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/docker.svg"
+                  alt="Docker"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Docker</span>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
@@ -254,9 +280,7 @@ export default function Home() {
       <section id="contact" className="px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-semibold">Kontakt</h2>
-          <p className="mt-4 text-gray-300">
-            Ønsker du å komme i kontakt med meg?
-          </p>
+          
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
             <Card className="text-center">
               <a
