@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+build
+dist
+*.min.js
+*.min.css
+package-lock.json
+.next
+.env
+.env.local
+.env.production.local
+.env.development.local
+
