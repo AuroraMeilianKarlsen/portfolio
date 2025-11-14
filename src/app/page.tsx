@@ -58,15 +58,12 @@ export default function Home() {
             </p>
             <br />
             <a
-            href="/cv.pdf"
-            download="Aurora_Meilian_Karlsen_CV.pdf"
-            className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors font-semibold"
-          >
-            Last ned CV
-          </a>
-            
-
-    
+              href="/AuroraMeilianKarlsenCV.pdf"
+              download="Aurora_Meilian_Karlsen_CV.pdf"
+              className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors font-semibold"
+            >
+              Last ned CV
+            </a>
           </div>
           <div className="flex justify-center lg:justify-end">
             <Image
