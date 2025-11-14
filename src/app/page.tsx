@@ -56,6 +56,17 @@ export default function Home() {
               {' '}
               Informatikkstudent, og bachelor i Celle og Molekylær Biologi
             </p>
+            <br />
+            <a
+            href="/cv.pdf"
+            download="Aurora_Meilian_Karlsen_CV.pdf"
+            className="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors font-semibold"
+          >
+            Last ned CV
+          </a>
+            
+
+    
           </div>
           <div className="flex justify-center lg:justify-end">
             <Image
@@ -82,8 +93,14 @@ export default function Home() {
             interaktivt design.
           </p>
 
+          <br />
           <p className="mt-4 text-gray-300">
-            Jeg er i det siste blitt glad i å ta bilder, her er noen av mine
+            Jeg er fortiden på utveksling i Italia. Under erasmus oppholdet mitt
+            studerer jeg på Universitetet i Padova, men jeg har også fått
+            mulighet til å reise til mange andre byer!
+            <br />
+            <br />
+            Her har jeg også blitt glad i å ta bilder, her er noen av mine
             nyligste knips fra Italia
           </p>
 
@@ -93,11 +110,11 @@ export default function Home() {
               images={images}
               containerWidth={1000}
               containerHeight={500}
-              animationDelay={1}
               animationStagger={0.08}
               easeType="elastic.out(1, 0.5)"
               transformStyles={transformStyles}
               enableHover={true}
+              triggerOnScroll={true}
             />
           </div>
         </div>
@@ -112,24 +129,10 @@ export default function Home() {
             <h3 className="text-xl font-medium text-gray-200 mb-4">Språk</h3>
             <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
               <Card className="flex flex-col items-center gap-2">
-                <Image
-                  src="/skillLogo/typescript.svg"
-                  alt="TypeScript"
-                  width={64}
-                  height={64}
-                  className="h-16 w-16"
-                />
-                <span className="text-sm text-gray-300">TypeScript</span>
-              </Card>
-              <Card className="flex flex-col items-center gap-2">
-                <Image
-                  src="/skillLogo/javascript.svg"
-                  alt="JavaScript"
-                  width={64}
-                  height={64}
-                  className="h-16 w-16"
-                />
-                <span className="text-sm text-gray-300">JavaScript</span>
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-2xl font-bold text-white">J</span>
+                </div>
+                <span className="text-sm text-gray-300">Java</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
                 <Image
@@ -149,7 +152,7 @@ export default function Home() {
                   height={64}
                   className="h-16 w-16"
                 />
-                <span className="text-sm text-gray-300">HTML5</span>
+                <span className="text-sm text-gray-300">HTML</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
                 <Image
@@ -160,6 +163,38 @@ export default function Home() {
                   className="h-16 w-16"
                 />
                 <span className="text-sm text-gray-300">CSS</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/javascript.svg"
+                  alt="JavaScript"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">JavaScript</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/typescript.svg"
+                  alt="TypeScript"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">TypeScript</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xl font-bold text-white">R</span>
+                </div>
+                <span className="text-sm text-gray-300">R</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-lg font-bold text-white">SQL</span>
+                </div>
+                <span className="text-sm text-gray-300">SQL</span>
               </Card>
             </div>
           </div>
@@ -191,24 +226,16 @@ export default function Home() {
                 <span className="text-sm text-gray-300">Next.js</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <Image
-                  src="/skillLogo/firebase.svg"
-                  alt="Firebase"
-                  width={64}
-                  height={64}
-                  className="h-16 w-16"
-                />
-                <span className="text-sm text-gray-300">Firebase</span>
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">TW</span>
+                </div>
+                <span className="text-sm text-gray-300">Tailwind</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <Image
-                  src="/skillLogo/spring.svg"
-                  alt="Spring"
-                  width={64}
-                  height={64}
-                  className="h-16 w-16"
-                />
-                <span className="text-sm text-gray-300">Spring</span>
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">JFX</span>
+                </div>
+                <span className="text-sm text-gray-300">JavaFX</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
                 <Image
@@ -248,6 +275,46 @@ export default function Home() {
                 <span className="text-sm text-gray-300">GitHub</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">VS</span>
+                </div>
+                <span className="text-sm text-gray-300">VS Code</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">IJ</span>
+                </div>
+                <span className="text-sm text-gray-300">IntelliJ</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">R</span>
+                </div>
+                <span className="text-sm text-gray-300">RStudio</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <Image
+                  src="/skillLogo/apachemaven.svg"
+                  alt="Maven"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
+                <span className="text-sm text-gray-300">Maven</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">V</span>
+                </div>
+                <span className="text-sm text-gray-300">Vite</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">F</span>
+                </div>
+                <span className="text-sm text-gray-300">Figma</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
                 <Image
                   src="/skillLogo/docker.svg"
                   alt="Docker"
@@ -256,6 +323,12 @@ export default function Home() {
                   className="h-16 w-16"
                 />
                 <span className="text-sm text-gray-300">Docker</span>
+              </Card>
+              <Card className="flex flex-col items-center gap-2">
+                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+                  <span className="text-xs font-bold text-white">S</span>
+                </div>
+                <span className="text-sm text-gray-300">Scrum</span>
               </Card>
             </div>
           </div>

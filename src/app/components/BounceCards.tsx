@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 
 interface BounceCardsProps {
@@ -14,6 +15,7 @@ interface BounceCardsProps {
   easeType?: string;
   transformStyles?: string[];
   enableHover?: boolean;
+  triggerOnScroll?: boolean;
 }
 
 export default function BounceCards({
@@ -32,23 +34,48 @@ export default function BounceCards({
     'rotate(2deg) translate(170px)',
   ],
   enableHover = false,
+  triggerOnScroll = false,
 }: BounceCardsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    // Registrer ScrollTrigger plugin kun på klienten etter mount
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.card',
-        { scale: 0 },
-        {
-          scale: 1,
-          stagger: animationStagger,
-          ease: easeType,
-          delay: animationDelay,
-        }
-      );
-    });
+      if (triggerOnScroll && containerRef.current) {
+        // Scroll-triggered animasjon
+        gsap.fromTo(
+          '.card',
+          { scale: 0 },
+          {
+            scale: 1,
+            stagger: animationStagger,
+            ease: easeType,
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top center -200px', // Starter når elementet er på midten i viewport -200px
+              toggleActions: 'play none none none', // Spill kun når den kommer inn i view
+            },
+          }
+        );
+      } else {
+        // Original delay-basert animasjon
+        gsap.fromTo(
+          '.card',
+          { scale: 0 },
+          {
+            scale: 1,
+            stagger: animationStagger,
+            ease: easeType,
+            delay: animationDelay,
+          }
+        );
+      }
+    }, containerRef);
 
     return () => ctx.revert();
-  }, [animationDelay, animationStagger, easeType]);
+  }, [animationDelay, animationStagger, easeType, triggerOnScroll]);
 
   const getNoRotationTransform = (transformStr: string): string => {
     const hasRotate = /rotate\([\s\S]*?\)/.test(transformStr);
@@ -140,6 +167,7 @@ export default function BounceCards({
 
   return (
     <div
+      ref={containerRef}
       className={`relative flex items-center justify-center ${className}`}
       style={{
         width: containerWidth,
