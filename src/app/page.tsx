@@ -94,13 +94,13 @@ export default function Home() {
             interaktivt design.
           </p>
           <br />
-          <p className="text-gray-300">
+          <ul className="text-gray-300 list-disc list-inside mt-4">
             <li>
               2020-2023: Bachelor i Biologi, spesialisering i Celle og
               Molekylærbiologi
             </li>
             <li>2023-2026: Bachelor i Informatikk</li>
-          </p>
+          </ul>
         </div>
       </section>
       <section id="bilder" className="px-6 py-24 scroll-mt-20">
