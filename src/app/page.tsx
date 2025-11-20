@@ -57,6 +57,10 @@ export default function Home() {
               Informatikkstudent, og bachelor i Celle og Molekylær Biologi
             </p>
             <br />
+            <h2 className="text-2xl font-semibold">Curriculum Vitae</h2>
+            <p className="text-gray-300">
+              Her kan du laste ned min CV i PDF format.
+            </p>
             <a
               href="/AuroraMeilianKarlsenCV.pdf"
               download="Aurora_Meilian_Karlsen_CV.pdf"
@@ -89,7 +93,18 @@ export default function Home() {
             egen læring. Her har jeg utforsket kreativitet og testet ut litt
             interaktivt design.
           </p>
-
+          <br />
+          <p className="text-gray-300">
+            <li>
+              2020-2023: Bachelor i Biologi, spesialisering i Celle og
+              Molekylærbiologi
+            </li>
+            <li>2023-2026: Bachelor i Informatikk</li>
+          </p>
+        </div>
+      </section>
+      <section id="bilder" className="px-6 py-24 scroll-mt-20">
+        <div className="mx-auto max-w-3xl">
           <br />
           <p className="mt-4 text-gray-300">
             Jeg er fortiden på utveksling i Italia. Under erasmus oppholdet mitt
