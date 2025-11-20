@@ -155,7 +155,8 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       } else {
         // Løpende: alterner mellom DinoRightUp og DinoLeftUp
         animationFrame++;
-        if (animationFrame % 10 < 5) {
+        // Økt fra 10 til 15 for å gjøre animasjonen litt saktere
+        if (animationFrame % 15 < 7) {
           imageToDraw = dinoRightUpImage;
         } else {
           imageToDraw = dinoLeftUpImage;
