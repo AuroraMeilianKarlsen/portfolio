@@ -141,9 +141,13 @@ export default function Home() {
             <h3 className="text-xl font-medium text-gray-200 mb-4">Språk</h3>
             <div className="grid grid-cols-3 gap-6 sm:grid-cols-4 md:grid-cols-5">
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-2xl font-bold text-white">J</span>
-                </div>
+                <Image
+                  src="/skillLogo/java.png"
+                  alt="Java"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">Java</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
@@ -197,15 +201,23 @@ export default function Home() {
                 <span className="text-sm text-gray-300">TypeScript</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xl font-bold text-white">R</span>
-                </div>
+                <Image
+                  src="/skillLogo/R_logo.svg.png"
+                  alt="R"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">R</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-lg font-bold text-white">SQL</span>
-                </div>
+                <Image
+                  src="/skillLogo/sql-server.png"
+                  alt="SQL"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">SQL</span>
               </Card>
             </div>
@@ -238,15 +250,23 @@ export default function Home() {
                 <span className="text-sm text-gray-300">Next.js</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">TW</span>
-                </div>
+                <Image
+                  src="/skillLogo/Tailwind_CSS_Logo.svg.png"
+                  alt="Tailwind"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">Tailwind</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">JFX</span>
-                </div>
+                <Image
+                  src="/skillLogo/Design uten navn/JavaFx.png"
+                  alt="JavaFX"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">JavaFX</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
@@ -287,21 +307,33 @@ export default function Home() {
                 <span className="text-sm text-gray-300">GitHub</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">VS</span>
-                </div>
+                <Image
+                  src="/skillLogo/vscode.png"
+                  alt="VS Code"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">VS Code</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">IJ</span>
-                </div>
+                <Image
+                  src="/skillLogo/IntelliJ_IDEA_Icon.svg.png"
+                  alt="IntelliJ"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">IntelliJ</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">R</span>
-                </div>
+                <Image
+                  src="/skillLogo/RStudio_logo_flat.svg.png"
+                  alt="RStudio"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">RStudio</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
@@ -315,15 +347,23 @@ export default function Home() {
                 <span className="text-sm text-gray-300">Maven</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">V</span>
-                </div>
+                <Image
+                  src="/skillLogo/vite.webp"
+                  alt="Vite"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">Vite</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">F</span>
-                </div>
+                <Image
+                  src="/skillLogo/figma.png"
+                  alt="Figma"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">Figma</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
@@ -337,9 +377,13 @@ export default function Home() {
                 <span className="text-sm text-gray-300">Docker</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
-                <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
-                  <span className="text-xs font-bold text-white">S</span>
-                </div>
+                <Image
+                  src="/skillLogo/360-3608727_scrum-agile-methodology-icon-clipart.webp"
+                  alt="Scrum"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16"
+                />
                 <span className="text-sm text-gray-300">Scrum</span>
               </Card>
             </div>
