@@ -164,16 +164,6 @@ export default function Home() {
                   height={64}
                   className="h-16 w-16"
                 />
-                <span className="text-sm text-gray-300">HTML</span>
-              </Card>
-              <Card className="flex flex-col items-center gap-2">
-                <Image
-                  src="/skillLogo/css.svg"
-                  alt="CSS"
-                  width={64}
-                  height={64}
-                  className="h-16 w-16"
-                />
                 <span className="text-sm text-gray-300">CSS</span>
               </Card>
               <Card className="flex flex-col items-center gap-2">
