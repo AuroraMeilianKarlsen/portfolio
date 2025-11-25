@@ -25,6 +25,7 @@ interface Obstacle {
   width: number;
   height: number;
   type: 'cactus' | 'bird';
+  cactusVariant?: 'big' | 'round' | 'small' | 'bigAndSmall';
 }
 
 interface Ground {
@@ -53,9 +54,18 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
     // Last inn alle dino-bildene
     let dinoStartImage: HTMLImageElement | null = null;
-    let dinoRightUpImage: HTMLImageElement | null = null;
-    let dinoLeftUpImage: HTMLImageElement | null = null;
-    let dinoDuckImage: HTMLImageElement | null = null;
+    let høyreBenOppImage: HTMLImageElement | null = null;
+    let venstreBenOppImage: HTMLImageElement | null = null;
+    let duckHøyreOppImage: HTMLImageElement | null = null;
+    let duckVenstreOppImage: HTMLImageElement | null = null;
+
+    // Last inn obstacle-bildene
+    let birdImage: HTMLImageElement | null = null;
+    let cactusBigImage: HTMLImageElement | null = null;
+    let cactusRoundImage: HTMLImageElement | null = null;
+    let cactusSmallImage: HTMLImageElement | null = null;
+    let cactusBigAndSmallImage: HTMLImageElement | null = null;
+
     let imagesLoaded = false;
     let animationFrame = 0;
 
@@ -64,17 +74,36 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       const startImg = new Image();
       startImg.src = '/dino/DinoStart.png';
 
-      const rightUpImg = new Image();
-      rightUpImg.src = '/dino/DinoRightUp.png';
+      const høyreBenOppImg = new Image();
+      høyreBenOppImg.src = '/dino/høyreBenOpp.png';
 
-      const leftUpImg = new Image();
-      leftUpImg.src = '/dino/DinoLeftUp.png';
+      const venstreBenOppImg = new Image();
+      venstreBenOppImg.src = '/dino/venstreBenOpp.png';
 
-      const duckImg = new Image();
-      duckImg.src = '/dino/DinoDuck.png';
+      const duckHøyreOppImg = new Image();
+      duckHøyreOppImg.src = '/dino/duckHøyreOpp.png';
+
+      const duckVenstreOppImg = new Image();
+      duckVenstreOppImg.src = '/dino/duckVenstreOpp.png';
+
+      // Last inn obstacle-bilder
+      const birdImg = new Image();
+      birdImg.src = '/dino/bird.png';
+
+      const cactusBigImg = new Image();
+      cactusBigImg.src = '/dino/cactusBig.png';
+
+      const cactusRoundImg = new Image();
+      cactusRoundImg.src = '/dino/cactusRound.png';
+
+      const cactusSmallImg = new Image();
+      cactusSmallImg.src = '/dino/cactusSmall.png';
+
+      const cactusBigAndSmallImg = new Image();
+      cactusBigAndSmallImg.src = '/dino/CactiBigAndSmall.png';
 
       let loadedCount = 0;
-      const totalImages = 4;
+      const totalImages = 10;
 
       const checkAllLoaded = () => {
         loadedCount++;
@@ -88,29 +117,109 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         checkAllLoaded();
       };
 
-      rightUpImg.onload = () => {
-        dinoRightUpImage = rightUpImg;
+      startImg.onerror = () => {
+        console.error('Failed to load DinoStart.png');
         checkAllLoaded();
       };
 
-      leftUpImg.onload = () => {
-        dinoLeftUpImage = leftUpImg;
+      høyreBenOppImg.onload = () => {
+        høyreBenOppImage = høyreBenOppImg;
         checkAllLoaded();
       };
 
-      duckImg.onload = () => {
-        dinoDuckImage = duckImg;
+      høyreBenOppImg.onerror = () => {
+        console.error('Failed to load høyreBenOpp.png');
+        checkAllLoaded();
+      };
+
+      venstreBenOppImg.onload = () => {
+        venstreBenOppImage = venstreBenOppImg;
+        checkAllLoaded();
+      };
+
+      venstreBenOppImg.onerror = () => {
+        console.error('Failed to load venstreBenOpp.png');
+        checkAllLoaded();
+      };
+
+      duckHøyreOppImg.onload = () => {
+        duckHøyreOppImage = duckHøyreOppImg;
+        checkAllLoaded();
+      };
+
+      duckHøyreOppImg.onerror = () => {
+        console.error('Failed to load duckHøyreOpp.png');
+        checkAllLoaded();
+      };
+
+      duckVenstreOppImg.onload = () => {
+        duckVenstreOppImage = duckVenstreOppImg;
+        checkAllLoaded();
+      };
+
+      duckVenstreOppImg.onerror = () => {
+        console.error('Failed to load duckVenstreOpp.png');
+        checkAllLoaded();
+      };
+
+      birdImg.onload = () => {
+        birdImage = birdImg;
+        checkAllLoaded();
+      };
+
+      birdImg.onerror = () => {
+        console.error('Failed to load bird.png');
+        checkAllLoaded();
+      };
+
+      cactusBigImg.onload = () => {
+        cactusBigImage = cactusBigImg;
+        checkAllLoaded();
+      };
+
+      cactusBigImg.onerror = () => {
+        console.error('Failed to load cactusBig.png');
+        checkAllLoaded();
+      };
+
+      cactusRoundImg.onload = () => {
+        cactusRoundImage = cactusRoundImg;
+        checkAllLoaded();
+      };
+
+      cactusRoundImg.onerror = () => {
+        console.error('Failed to load cactusRound.png');
+        checkAllLoaded();
+      };
+
+      cactusSmallImg.onload = () => {
+        cactusSmallImage = cactusSmallImg;
+        checkAllLoaded();
+      };
+
+      cactusSmallImg.onerror = () => {
+        console.error('Failed to load cactusSmall.png');
+        checkAllLoaded();
+      };
+
+      cactusBigAndSmallImg.onload = () => {
+        cactusBigAndSmallImage = cactusBigAndSmallImg;
+        checkAllLoaded();
+      };
+
+      cactusBigAndSmallImg.onerror = () => {
+        console.error('Failed to load CactiBigAndSmall.png');
         checkAllLoaded();
       };
     };
 
     loadImages();
 
-    // Oppdatert dino-dimensjoner: 50x50
+    // Oppdatert dino-dimensjoner: 60x50 (bredere horisontalt)
     const dino: Dino = {
       x: 50,
       y: 150, // ground.y (200) - dino.height (50) = 150
-      width: 50,
+      width: 60, // Økt fra 50 til 60 for å strekke horisontalt
       height: 50,
       velocityY: 0,
       jumping: false,
@@ -146,20 +255,25 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         // Før spillet starter: vis DinoStart
         imageToDraw = dinoStartImage;
       } else if (dino.ducking) {
-        // Dukker: vis DinoDuck
-        imageToDraw = dinoDuckImage;
-        drawHeight = 50; // DinoDuck er også 50x50
+        // Dukker: alterner mellom duckHøyreOpp og duckVenstreOpp for animasjon
+        animationFrame++;
+        if (animationFrame % 15 < 7) {
+          imageToDraw = duckHøyreOppImage;
+        } else {
+          imageToDraw = duckVenstreOppImage;
+        }
+        drawHeight = 50; // Høyde for dukking forblir 50, men bredde er nå 60
       } else if (dino.jumping) {
-        // Hoppende: vis DinoRightUp (standard hopp-bilde)
-        imageToDraw = dinoRightUpImage;
+        // Hoppende: bruk høyreBenOpp som hopp-bilde
+        imageToDraw = høyreBenOppImage;
       } else {
-        // Løpende: alterner mellom DinoRightUp og DinoLeftUp
+        // Løpende: alterner mellom høyreBenOpp og venstreBenOpp for bedre animasjon
         animationFrame++;
         // Økt fra 10 til 15 for å gjøre animasjonen litt saktere
         if (animationFrame % 15 < 7) {
-          imageToDraw = dinoRightUpImage;
+          imageToDraw = høyreBenOppImage;
         } else {
-          imageToDraw = dinoLeftUpImage;
+          imageToDraw = venstreBenOppImage;
         }
       }
 
@@ -174,14 +288,60 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
     function drawObstacle(obstacle: Obstacle) {
       if (!ctx) return;
-      ctx.fillStyle = '#535353';
+
       if (obstacle.type === 'cactus') {
-        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
-        ctx.fillRect(obstacle.x - 5, obstacle.y + 10, 5, 15);
-        ctx.fillRect(obstacle.x + obstacle.width, obstacle.y + 10, 5, 15);
+        let cactusImage: HTMLImageElement | null = null;
+
+        // Velg riktig kaktus-bilde basert på variant
+        switch (obstacle.cactusVariant) {
+          case 'big':
+            cactusImage = cactusBigImage;
+            break;
+          case 'round':
+            cactusImage = cactusRoundImage;
+            break;
+          case 'small':
+            cactusImage = cactusSmallImage;
+            break;
+          case 'bigAndSmall':
+            cactusImage = cactusBigAndSmallImage;
+            break;
+        }
+
+        if (cactusImage) {
+          ctx.drawImage(
+            cactusImage,
+            obstacle.x,
+            obstacle.y,
+            obstacle.width,
+            obstacle.height
+          );
+        } else {
+          // Fallback hvis bilde ikke er lastet
+          ctx.fillStyle = '#535353';
+          ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        }
       } else {
-        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, 15);
-        ctx.fillRect(obstacle.x + 5, obstacle.y + 15, obstacle.width - 10, 10);
+        // Fugl
+        if (birdImage) {
+          ctx.drawImage(
+            birdImage,
+            obstacle.x,
+            obstacle.y,
+            obstacle.width,
+            obstacle.height
+          );
+        } else {
+          // Fallback hvis bilde ikke er lastet
+          ctx.fillStyle = '#535353';
+          ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, 15);
+          ctx.fillRect(
+            obstacle.x + 5,
+            obstacle.y + 15,
+            obstacle.width - 10,
+            10
+          );
+        }
       }
     }
 
@@ -198,12 +358,55 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     function createObstacle() {
       if (!canvas) return;
       const type: 'cactus' | 'bird' = Math.random() > 0.7 ? 'bird' : 'cactus';
+
+      let width = 35;
+      let height = 25;
+      let cactusVariant: 'big' | 'round' | 'small' | 'bigAndSmall' | undefined =
+        undefined;
+
+      if (type === 'cactus') {
+        // Velg tilfeldig kaktus-variant og sett størrelser
+        const cactusVariants: ('big' | 'round' | 'small' | 'bigAndSmall')[] = [
+          'big',
+          'round',
+          'small',
+          'bigAndSmall',
+        ];
+        cactusVariant =
+          cactusVariants[Math.floor(Math.random() * cactusVariants.length)];
+
+        // Sett størrelser basert på variant (gjort større og bredere)
+        switch (cactusVariant) {
+          case 'big':
+            width = 40; // Økt fra 30 til 40
+            height = 60; // Økt fra 50 til 60
+            break;
+          case 'round':
+            width = 35; // Økt fra 25 til 35
+            height = 55; // Økt fra 45 til 55
+            break;
+          case 'small':
+            width = 28; // Økt fra 20 til 28
+            height = 42; // Økt fra 35 til 42
+            break;
+          case 'bigAndSmall':
+            width = 45; // Økt fra 35 til 45
+            height = 60; // Økt fra 50 til 60
+            break;
+        }
+      } else {
+        // Fugl størrelser (gjort større)
+        width = 45; // Økt fra 35 til 45
+        height = 32; // Økt fra 25 til 32
+      }
+
       const obstacle: Obstacle = {
         x: canvas.width,
-        width: type === 'cactus' ? 20 : 35,
-        height: type === 'cactus' ? 40 : 25,
+        width: width,
+        height: height,
         type: type,
         y: 0,
+        cactusVariant: cactusVariant,
       };
 
       if (type === 'cactus') {
@@ -212,7 +415,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         // Flytt fugler høyere opp slik at dinoen kan dukke under dem
         // Dinoen når den dukker er på Y=150 med høyde 50, så den går fra 150-200
         // Fuglene må være over Y=150 for at dinoen skal kunne dukke under
-        obstacle.y = ground.y - 70; // Endret fra 70 til 100 for å gi mer plass
+        obstacle.y = ground.y - 70;
       }
 
       obstacles.push(obstacle);
