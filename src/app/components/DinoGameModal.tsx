@@ -14,6 +14,7 @@ interface Dino {
   height: number;
   velocityY: number;
   jumping: boolean;
+  ducking: boolean;
   gravity: number;
   jumpPower: number;
 }
@@ -49,25 +50,71 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     let animationFrameId: number;
     let gameRunning = false;
     let localScore = 0;
-    let dinoImage: HTMLImageElement | null = null;
-    let imageLoaded = false;
 
-    // Last inn dino-bildet
-    const img = new Image();
-    img.src = '/Dino.png';
-    img.onload = () => {
-      dinoImage = img;
-      imageLoaded = true;
+    // Last inn alle dino-bildene
+    let dinoStartImage: HTMLImageElement | null = null;
+    let dinoRightUpImage: HTMLImageElement | null = null;
+    let dinoLeftUpImage: HTMLImageElement | null = null;
+    let dinoDuckImage: HTMLImageElement | null = null;
+    let imagesLoaded = false;
+    let animationFrame = 0;
+
+    // Last inn alle bildene
+    const loadImages = () => {
+      const startImg = new Image();
+      startImg.src = '/dino/DinoStart.png';
+
+      const rightUpImg = new Image();
+      rightUpImg.src = '/dino/DinoRightUp.png';
+
+      const leftUpImg = new Image();
+      leftUpImg.src = '/dino/DinoLeftUp.png';
+
+      const duckImg = new Image();
+      duckImg.src = '/dino/DinoDuck.png';
+
+      let loadedCount = 0;
+      const totalImages = 4;
+
+      const checkAllLoaded = () => {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          imagesLoaded = true;
+        }
+      };
+
+      startImg.onload = () => {
+        dinoStartImage = startImg;
+        checkAllLoaded();
+      };
+
+      rightUpImg.onload = () => {
+        dinoRightUpImage = rightUpImg;
+        checkAllLoaded();
+      };
+
+      leftUpImg.onload = () => {
+        dinoLeftUpImage = leftUpImg;
+        checkAllLoaded();
+      };
+
+      duckImg.onload = () => {
+        dinoDuckImage = duckImg;
+        checkAllLoaded();
+      };
     };
 
-    //skalerer dino
+    loadImages();
+
+    // Oppdatert dino-dimensjoner: 50x50
     const dino: Dino = {
       x: 50,
-      y: 136, // Justert: ground.y (200) - dino.height (64) = 136
-      width: 64,
-      height: 64, // Pixelart dimensjoner: 64x64
+      y: 150, // ground.y (200) - dino.height (50) = 150
+      width: 50,
+      height: 50,
       velocityY: 0,
       jumping: false,
+      ducking: false,
       gravity: 0.6,
       jumpPower: -12,
     };
@@ -83,13 +130,45 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     function drawDino() {
       if (!ctx) return;
 
-      // Hvis bildet er lastet, tegn det
-      if (dinoImage && imageLoaded) {
-        ctx.drawImage(dinoImage, dino.x, dino.y, dino.width, dino.height);
-      } else {
-        // Fallback: tegn en enkel rektangel mens bildet laster
+      // Bestem hvilket bilde som skal brukes
+      let imageToDraw: HTMLImageElement | null = null;
+      const drawY = dino.y;
+      let drawHeight = dino.height;
+
+      if (!imagesLoaded) {
+        // Fallback mens bilder laster
         ctx.fillStyle = '#FF8DA1';
         ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+        return;
+      }
+
+      if (!gameRunning) {
+        // Før spillet starter: vis DinoStart
+        imageToDraw = dinoStartImage;
+      } else if (dino.ducking) {
+        // Dukker: vis DinoDuck
+        imageToDraw = dinoDuckImage;
+        drawHeight = 50; // DinoDuck er også 50x50
+      } else if (dino.jumping) {
+        // Hoppende: vis DinoRightUp (standard hopp-bilde)
+        imageToDraw = dinoRightUpImage;
+      } else {
+        // Løpende: alterner mellom DinoRightUp og DinoLeftUp
+        animationFrame++;
+        // Økt fra 10 til 15 for å gjøre animasjonen litt saktere
+        if (animationFrame % 15 < 7) {
+          imageToDraw = dinoRightUpImage;
+        } else {
+          imageToDraw = dinoLeftUpImage;
+        }
+      }
+
+      if (imageToDraw) {
+        ctx.drawImage(imageToDraw, dino.x, drawY, dino.width, drawHeight);
+      } else {
+        // Fallback hvis bilde ikke er lastet
+        ctx.fillStyle = '#FF8DA1';
+        ctx.fillRect(dino.x, drawY, dino.width, drawHeight);
       }
     }
 
@@ -130,7 +209,10 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       if (type === 'cactus') {
         obstacle.y = ground.y - obstacle.height;
       } else {
-        obstacle.y = ground.y - 70;
+        // Flytt fugler høyere opp slik at dinoen kan dukke under dem
+        // Dinoen når den dukker er på Y=150 med høyde 50, så den går fra 150-200
+        // Fuglene må være over Y=150 for at dinoen skal kunne dukke under
+        obstacle.y = ground.y - 70; // Endret fra 70 til 100 for å gi mer plass
       }
 
       obstacles.push(obstacle);
@@ -141,8 +223,10 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         dino.velocityY += dino.gravity;
         dino.y += dino.velocityY;
 
-        if (dino.y >= 136) {
-          dino.y = 136;
+        // Oppdatert y-posisjon for 50x50 dino
+        const groundY = 150; // ground.y (200) - dino.height (50)
+        if (dino.y >= groundY) {
+          dino.y = groundY;
           dino.velocityY = 0;
           dino.jumping = false;
         }
@@ -169,11 +253,28 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
     function checkCollision(): boolean {
       for (const obstacle of obstacles) {
+        // Beregn faktisk dino-høyde og Y-posisjon basert på om den dukker eller ikke
+        let dinoHeight: number;
+        let dinoY: number;
+
+        if (dino.ducking) {
+          // Når dinoen dukker, skal den ha lavere høyde slik at den kan gå under fugler
+          // DinoDuck.png er 50x50, men vi behandler den som lavere for collision detection
+          dinoHeight = 30; // Lavere høyde når dukker (kan justeres)
+          // Juster Y-posisjonen oppover for å matche den lavere høyden
+          // Dinoen starter på Y=150, så vi flytter den oppover med differansen
+          dinoY = dino.y + (dino.height - dinoHeight); // 150 + (50 - 30) = 170
+        } else {
+          dinoHeight = dino.height; // 50
+          dinoY = dino.y; // 150
+        }
+
+        // Sjekk collision
         if (
           dino.x < obstacle.x + obstacle.width &&
           dino.x + dino.width > obstacle.x &&
-          dino.y < obstacle.y + obstacle.height &&
-          dino.y + dino.height > obstacle.y
+          dinoY < obstacle.y + obstacle.height &&
+          dinoY + dinoHeight > obstacle.y
         ) {
           return true;
         }
@@ -182,19 +283,31 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     }
 
     function jump() {
-      if (!dino.jumping && gameRunning) {
+      if (!dino.jumping && !dino.ducking && gameRunning) {
         dino.jumping = true;
         dino.velocityY = dino.jumpPower;
       }
     }
 
+    function duck() {
+      if (!dino.jumping && gameRunning) {
+        dino.ducking = true;
+      }
+    }
+
+    function stopDuck() {
+      dino.ducking = false;
+    }
+
     function reset() {
-      dino.y = 136;
+      dino.y = 150; // Oppdatert for 50x50 dino
       dino.velocityY = 0;
       dino.jumping = false;
+      dino.ducking = false;
       obstacles = [];
       obstacleTimer = 0;
       localScore = 0;
+      animationFrame = 0;
       setScore(0);
       setGameOver(false);
       gameRunning = true;
@@ -239,8 +352,21 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
           jump();
         }
       }
+      if (e.code === 'ArrowDown') {
+        e.preventDefault();
+        if (gameRunning) {
+          duck();
+        }
+      }
       if (e.code === 'Escape') {
         onClose();
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.code === 'ArrowDown') {
+        e.preventDefault();
+        stopDuck();
       }
     };
 
@@ -253,12 +379,14 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     };
 
     document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
     canvas.addEventListener('click', handleClick);
 
     gameLoop();
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
       canvas.removeEventListener('click', handleClick);
       cancelAnimationFrame(animationFrameId);
     };
@@ -360,7 +488,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
             {gameOver && 'GAME OVER - Trykk SPACE for å prøve igjen'}
             {gameStarted &&
               !gameOver &&
-              '⬆ Trykk SPACE eller klikk for å hoppe | ESC for å lukke'}
+              '⬆ SPACE: Hopp | ⬇ PIL: Dukk | ESC: Lukk'}
           </div>
         </div>
       </div>
