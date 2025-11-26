@@ -28,7 +28,11 @@ const languages: Skill[] = [
 
 const technologies: Skill[] = [
   { name: 'React', icon: '/skillLogo/react.svg', iconAlt: 'React logo' },
-  { name: 'Next.js', icon: '/skillLogo/nextdotjs.svg', iconAlt: 'Next.js logo' },
+  {
+    name: 'Next.js',
+    icon: '/skillLogo/nextdotjs.svg',
+    iconAlt: 'Next.js logo',
+  },
   { name: 'Tailwind', textIcon: 'TW' },
   { name: 'JavaFX', textIcon: 'JFX' },
   {
@@ -53,33 +57,33 @@ const tools: Skill[] = [
 
 function SkillCard({ skill }: { skill: Skill }) {
   return (
-    <Card className="flex flex-col items-center gap-2">
+    <Card className="flex flex-col items-center gap-1.5">
       {skill.icon ? (
         <Image
           src={skill.icon}
           alt={skill.iconAlt || `${skill.name} logo`}
-          width={64}
-          height={64}
-          className="h-16 w-16"
+          width={48}
+          height={48}
+          className="h-12 w-12"
         />
       ) : (
-        <div className="h-16 w-16 flex items-center justify-center bg-gray-700 rounded-lg">
+        <div className="h-12 w-12 flex items-center justify-center bg-gray-700 rounded-lg">
           <span
             className={`font-bold text-white ${
               skill.textIcon === 'SQL'
-                ? 'text-lg'
+                ? 'text-base'
                 : skill.textIcon === 'R' && skill.name === 'R'
-                ? 'text-xl'
-                : skill.textIcon === 'J'
-                ? 'text-2xl'
-                : 'text-xs'
+                  ? 'text-lg'
+                  : skill.textIcon === 'J'
+                    ? 'text-xl'
+                    : 'text-xs'
             }`}
           >
             {skill.textIcon}
           </span>
         </div>
       )}
-      <span className="text-sm text-gray-300">{skill.name}</span>
+      <span className="text-xs text-gray-300">{skill.name}</span>
     </Card>
   );
 }
@@ -129,4 +133,3 @@ export default function SkillsSection() {
     </section>
   );
 }
-
