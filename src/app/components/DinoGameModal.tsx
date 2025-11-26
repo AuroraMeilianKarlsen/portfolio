@@ -319,7 +319,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         } else {
           // Fallback hvis bilde ikke er lastet
           ctx.fillStyle = '#535353';
-          ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
         }
       } else {
         // Fugl
@@ -334,7 +334,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         } else {
           // Fallback hvis bilde ikke er lastet
           ctx.fillStyle = '#535353';
-          ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, 15);
+        ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, 15);
           ctx.fillRect(
             obstacle.x + 5,
             obstacle.y + 15,
