@@ -174,28 +174,32 @@ export default function BounceCards({
         height: containerHeight,
       }}
     >
-      {images.map((src, idx) => (
-        <div
-          key={idx}
-          className={`card card-${idx} absolute w-[200px] aspect-square border-4 rounded-[30px] overflow-hidden`}
-          style={{
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-            transform: transformStyles[idx] || 'none',
-            borderColor: '#F5E9DC',
-          }}
-          onMouseEnter={() => pushSiblings(idx)}
-          onMouseLeave={resetSiblings}
-        >
-          <Image
-            className="w-full h-full object-cover"
-            src={src}
-            alt={`card-${idx}`}
-            width={200}
-            height={200}
-            unoptimized
-          />
-        </div>
-      ))}
+      {images.map((src, idx) => {
+        const imageName = src.split('/').pop()?.replace(/\.[^/.]+$/, '') || '';
+        return (
+          <div
+            key={idx}
+            className={`card card-${idx} absolute w-[200px] aspect-square border-4 rounded-[30px] overflow-hidden`}
+            style={{
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+              transform: transformStyles[idx] || 'none',
+              borderColor: '#F5E9DC',
+            }}
+            onMouseEnter={() => pushSiblings(idx)}
+            onMouseLeave={resetSiblings}
+            role="img"
+            aria-label={`Bilde ${idx + 1} av ${images.length} fra bildegalleri`}
+          >
+            <Image
+              className="w-full h-full object-cover"
+              src={src}
+              alt={`Bilde fra Italia: ${imageName}`}
+              width={200}
+              height={200}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }

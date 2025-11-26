@@ -71,9 +71,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/70 backdrop-blur">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 bg-gray-950/70 backdrop-blur"
+      aria-label="Hovednavigasjon"
+    >
       <div className="mx-auto flex max-w-5xl items-center justify-between px-8 py-5">
-        <div className="flex space-x-10 text-lg">
+        <div className="flex space-x-10 text-lg" role="list">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -83,10 +86,19 @@ export default function Navbar() {
                 className={`relative text-white/80 hover:text-indigo-400 transition-colors ${
                   isActive ? 'text-indigo-400' : ''
                 }`}
+                aria-current={isActive ? 'page' : undefined}
+                aria-label={
+                  typeof link.label === 'string'
+                    ? link.label
+                    : `Naviger til ${link.id} seksjon`
+                }
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-indigo-400" />
+                  <span
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-indigo-400"
+                    aria-hidden="true"
+                  />
                 )}
               </a>
             );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import styles from './DinoGameModal.module.css';
 
 interface DinoGameModalProps {
   isOpen: boolean;
@@ -51,6 +52,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     let animationFrameId: number;
     let gameRunning = false;
     let localScore = 0;
+    let spaceKeyPressed = false; // Flagg for å unngå gjentatte hopp
 
     // Last inn alle dino-bildene
     let dinoStartImage: HTMLImageElement | null = null;
@@ -346,7 +348,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     }
 
     function drawGround() {
-      if (!ctx) return;
+      if (!ctx || !canvas) return;
       ctx.strokeStyle = '#535353';
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -432,6 +434,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
           dino.y = groundY;
           dino.velocityY = 0;
           dino.jumping = false;
+          spaceKeyPressed = false; // Reset flagg når dinoen lander
         }
       }
     }
@@ -486,7 +489,8 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     }
 
     function jump() {
-      if (!dino.jumping && !dino.ducking && gameRunning) {
+      if (!dino.jumping && !dino.ducking && gameRunning && !spaceKeyPressed) {
+        spaceKeyPressed = true;
         dino.jumping = true;
         dino.velocityY = dino.jumpPower;
       }
@@ -507,6 +511,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       dino.velocityY = 0;
       dino.jumping = false;
       dino.ducking = false;
+      spaceKeyPressed = false; // Reset flagg ved reset
       obstacles = [];
       obstacleTimer = 0;
       localScore = 0;
@@ -549,9 +554,13 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
         e.preventDefault();
+        // Ignorer key repeat events (når tasten holdes nede)
+        if (e.repeat) return;
+
         if (!gameRunning) {
           reset();
-        } else {
+        } else if (!dino.jumping && !dino.ducking) {
+          // Kun hopp hvis dinoen ikke allerede hopper eller dukker
           jump();
         }
       }
@@ -608,61 +617,26 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
   return (
     <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 9999,
-        padding: '20px',
-      }}
+      className={styles.modalOverlay}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dino-game-title"
     >
-      <div
-        style={{
-          backgroundColor: '#f7f7f7',
-          borderRadius: '12px',
-          padding: '30px',
-          maxWidth: '900px',
-          width: '100%',
-          position: 'relative',
-          boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '15px',
-            right: '15px',
-            background: 'none',
-            border: 'none',
-            fontSize: '28px',
-            cursor: 'pointer',
-            color: '#535353',
-            lineHeight: 1,
-            padding: '5px 10px',
-          }}
-          aria-label="Lukk"
+          className={styles.closeButton}
+          aria-label="Lukk spill"
         >
           ×
         </button>
 
-        <div style={{ textAlign: 'center' }}>
-          <h2
-            style={{ color: '#535353', marginBottom: '10px', fontSize: '32px' }}
-          >
+        <div className={styles.modalHeader}>
+          <h2 id="dino-game-title" className={styles.title}>
             Dino Game
           </h2>
-          <div
-            style={{ fontSize: '20px', color: '#535353', marginBottom: '15px' }}
-          >
+          <div className={styles.score}>
             Poeng: <strong>{score}</strong>
           </div>
 
@@ -670,23 +644,11 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
             ref={canvasRef}
             width={800}
             height={200}
-            style={{
-              border: '2px solid #535353',
-              background: '#fff',
-              display: 'block',
-              margin: '0 auto',
-              maxWidth: '100%',
-              borderRadius: '8px',
-            }}
+            className={styles.canvas}
+            aria-label="Dino spill canvas"
           />
 
-          <div
-            style={{
-              color: '#535353',
-              marginTop: '15px',
-              fontSize: '14px',
-            }}
-          >
+          <div className={styles.instructions}>
             {!gameStarted && 'Trykk SPACE for å starte'}
             {gameOver && 'GAME OVER - Trykk SPACE for å prøve igjen'}
             {gameStarted &&
