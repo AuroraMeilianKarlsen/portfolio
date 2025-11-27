@@ -7,13 +7,13 @@ import Image from 'next/image';
 
 interface BounceCardsProps {
   className?: string;
-  images?: string[];
+  images?: readonly string[];
   containerWidth?: number;
   containerHeight?: number;
   animationDelay?: number;
   animationStagger?: number;
   easeType?: string;
-  transformStyles?: string[];
+  transformStyles?: readonly string[];
   enableHover?: boolean;
   triggerOnScroll?: boolean;
 }
