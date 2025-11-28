@@ -77,16 +77,16 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       startImg.src = '/dino/DinoStart.png';
 
       const høyreBenOppImg = new Image();
-      høyreBenOppImg.src = '/dino/høyreBenOpp.png';
+      høyreBenOppImg.src = '/dino/DinoRightUp.png';
 
       const venstreBenOppImg = new Image();
-      venstreBenOppImg.src = '/dino/venstreBenOpp.png';
+      venstreBenOppImg.src = '/dino/DinoLeftUp.png';
 
       const duckHøyreOppImg = new Image();
-      duckHøyreOppImg.src = '/dino/duckHøyreOpp.png';
+      duckHøyreOppImg.src = '/dino/DinoDuckRightUp.png';
 
       const duckVenstreOppImg = new Image();
-      duckVenstreOppImg.src = '/dino/duckVenstreOpp.png';
+      duckVenstreOppImg.src = '/dino/DinoDuckLeftUp.png';
 
       // Last inn obstacle-bilder
       const birdImg = new Image();
@@ -102,7 +102,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       cactusSmallImg.src = '/dino/cactusSmall.png';
 
       const cactusBigAndSmallImg = new Image();
-      cactusBigAndSmallImg.src = '/dino/CactiBigAndSmall.png';
+      cactusBigAndSmallImg.src = '/dino/cactiBigAndSmall.png';
 
       let loadedCount = 0;
       const totalImages = 10;
@@ -217,11 +217,11 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
     loadImages();
 
-    // Oppdatert dino-dimensjoner: 60x50 (bredere horisontalt)
+    // Dino-dimensjoner - bildets størrelse brukes direkte som hitboks
     const dino: Dino = {
       x: 50,
       y: 150, // ground.y (200) - dino.height (50) = 150
-      width: 60, // Økt fra 50 til 60 for å strekke horisontalt
+      width: 50,
       height: 50,
       velocityY: 0,
       jumping: false,
@@ -229,6 +229,10 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       gravity: 0.6,
       jumpPower: -12,
     };
+
+    // Duck-dimensjoner (bredere og lavere når dinoen dukker)
+    const duckWidth = 60;
+    const duckHeight = 25;
 
     let obstacles: Obstacle[] = [];
     let obstacleTimer = 0;
@@ -243,7 +247,8 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
       // Bestem hvilket bilde som skal brukes
       let imageToDraw: HTMLImageElement | null = null;
-      const drawY = dino.y;
+      let drawY = dino.y;
+      let drawWidth = dino.width;
       let drawHeight = dino.height;
 
       if (!imagesLoaded) {
@@ -264,7 +269,10 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         } else {
           imageToDraw = duckVenstreOppImage;
         }
-        drawHeight = 50; // Høyde for dukking forblir 50, men bredde er nå 60
+        // Når dinoen dukker, bruk duck-dimensjoner og plasser på bakken
+        drawWidth = duckWidth;
+        drawHeight = duckHeight;
+        drawY = ground.y - duckHeight;
       } else if (dino.jumping) {
         // Hoppende: bruk høyreBenOpp som hopp-bilde
         imageToDraw = høyreBenOppImage;
@@ -280,11 +288,11 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       }
 
       if (imageToDraw) {
-        ctx.drawImage(imageToDraw, dino.x, drawY, dino.width, drawHeight);
+        ctx.drawImage(imageToDraw, dino.x, drawY, drawWidth, drawHeight);
       } else {
         // Fallback hvis bilde ikke er lastet
         ctx.fillStyle = '#FF8DA1';
-        ctx.fillRect(dino.x, drawY, dino.width, drawHeight);
+        ctx.fillRect(dino.x, drawY, drawWidth, drawHeight);
       }
     }
 
@@ -377,29 +385,28 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         cactusVariant =
           cactusVariants[Math.floor(Math.random() * cactusVariants.length)];
 
-        // Sett størrelser basert på variant (gjort større og bredere)
+        // Sett størrelser basert på variant 
         switch (cactusVariant) {
           case 'big':
-            width = 40; // Økt fra 30 til 40
-            height = 60; // Økt fra 50 til 60
+            width = 40; 
+            height = 60;
             break;
           case 'round':
-            width = 35; // Økt fra 25 til 35
-            height = 55; // Økt fra 45 til 55
+            width = 35; 
+            height = 45; 
             break;
           case 'small':
-            width = 28; // Økt fra 20 til 28
-            height = 42; // Økt fra 35 til 42
+            width = 28; 
+            height = 42; 
             break;
           case 'bigAndSmall':
-            width = 45; // Økt fra 35 til 45
-            height = 60; // Økt fra 50 til 60
-            break;
+            width = 45; 
+            height = 60; 
         }
       } else {
-        // Fugl størrelser (gjort større)
-        width = 45; // Økt fra 35 til 45
-        height = 32; // Økt fra 25 til 32
+        // Fugl størrelser
+        width = 35;
+        height = 25;
       }
 
       const obstacle: Obstacle = {
@@ -459,26 +466,17 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
 
     function checkCollision(): boolean {
       for (const obstacle of obstacles) {
-        // Beregn faktisk dino-høyde og Y-posisjon basert på om den dukker eller ikke
-        let dinoHeight: number;
-        let dinoY: number;
+        // Bruk bildets faktiske størrelse som hitboks
+        // Når dinoen dukker, bruker vi duckHeight/duckWidth
+        const dinoHeight = dino.ducking ? duckHeight : dino.height;
+        const dinoWidth = dino.ducking ? duckWidth : dino.width;
+        // Når dinoen dukker, flyttes den ned slik at bunnen er på bakken
+        const dinoY = dino.ducking ? ground.y - duckHeight : dino.y;
 
-        if (dino.ducking) {
-          // Når dinoen dukker, skal den ha lavere høyde slik at den kan gå under fugler
-          // DinoDuck.png er 50x50, men vi behandler den som lavere for collision detection
-          dinoHeight = 30; // Lavere høyde når dukker (kan justeres)
-          // Juster Y-posisjonen oppover for å matche den lavere høyden
-          // Dinoen starter på Y=150, så vi flytter den oppover med differansen
-          dinoY = dino.y + (dino.height - dinoHeight); // 150 + (50 - 30) = 170
-        } else {
-          dinoHeight = dino.height; // 50
-          dinoY = dino.y; // 150
-        }
-
-        // Sjekk collision
+        // Sjekk collision med bildets faktiske størrelse
         if (
           dino.x < obstacle.x + obstacle.width &&
-          dino.x + dino.width > obstacle.x &&
+          dino.x + dinoWidth > obstacle.x &&
           dinoY < obstacle.y + obstacle.height &&
           dinoY + dinoHeight > obstacle.y
         ) {
@@ -552,7 +550,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
     }
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
         e.preventDefault();
         // Ignorer key repeat events (når tasten holdes nede)
         if (e.repeat) return;
@@ -653,7 +651,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
             {gameOver && 'GAME OVER - Trykk SPACE for å prøve igjen'}
             {gameStarted &&
               !gameOver &&
-              '⬆ SPACE: Hopp | ⬇ PIL: Dukk | ESC: Lukk'}
+              'SPACE eller ⬆ PIL: Hopp | ⬇ PIL: Dukk | ESC: Lukk'}
           </div>
         </div>
       </div>
