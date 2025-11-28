@@ -10,9 +10,9 @@ export default function AboutSection() {
             <p className="mt-4 text-gray-300">
               Mitt navn er Aurora Meilian Karlsen, og jeg studerer 3. året på
               bachelor i informatikk ved NTNU. Jeg er en utvikler som liker å
-              bygge enkle og brukervennlige løsninger. Siden er mest for gøy
-              og egen læring. Her har jeg utforsket kreativitet og testet ut
-              litt interaktivt design.
+              bygge enkle og brukervennlige løsninger. Siden er mest for gøy og
+              egen læring. Her har jeg utforsket kreativitet og testet ut litt
+              interaktivt design.
             </p>
             <br />
             <ul className="text-gray-300 list-disc list-inside mt-4">
@@ -44,4 +44,3 @@ export default function AboutSection() {
     </section>
   );
 }
-

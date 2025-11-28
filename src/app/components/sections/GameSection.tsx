@@ -4,11 +4,7 @@ interface GameSectionProps {
 
 export default function GameSection({ onOpenGame }: GameSectionProps) {
   return (
-    <section
-      id="game"
-      className="px-6 py-12 scroll-mt-20"
-      aria-label="Spill"
-    >
+    <section id="game" className="px-6 py-12 scroll-mt-20" aria-label="Spill">
       <div className="mx-auto max-w-3xl">
         <div className="mt-8 flex justify-center">
           <button
@@ -23,4 +19,3 @@ export default function GameSection({ onOpenGame }: GameSectionProps) {
     </section>
   );
 }
-

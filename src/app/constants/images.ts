@@ -25,4 +25,3 @@ export const bounceCardsTransformStyles = [
   'rotate(0deg) translate(400px)',
   'rotate(0deg) translate(500px)',
 ] as const;
-

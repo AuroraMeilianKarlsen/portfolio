@@ -175,7 +175,11 @@ export default function BounceCards({
       }}
     >
       {images.map((src, idx) => {
-        const imageName = src.split('/').pop()?.replace(/\.[^/.]+$/, '') || '';
+        const imageName =
+          src
+            .split('/')
+            .pop()
+            ?.replace(/\.[^/.]+$/, '') || '';
         return (
           <div
             key={idx}

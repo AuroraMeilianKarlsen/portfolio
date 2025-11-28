@@ -1,5 +1,8 @@
 import BounceCards from '../BounceCards';
-import { pictureGalleryImages, bounceCardsTransformStyles } from '../../constants/images';
+import {
+  pictureGalleryImages,
+  bounceCardsTransformStyles,
+} from '../../constants/images';
 
 export default function PictureGallerySection() {
   return (
@@ -12,8 +15,8 @@ export default function PictureGallerySection() {
         <br />
         <p className="mt-4 text-gray-300">
           Jeg er fortiden på utveksling i Italia. Under erasmus oppholdet mitt
-          studerer jeg på Universitetet i Padova, men jeg har også fått
-          mulighet til å reise til mange andre byer!
+          studerer jeg på Universitetet i Padova, men jeg har også fått mulighet
+          til å reise til mange andre byer!
           <br />
           <br />
           Her har jeg også blitt glad i å ta bilder, her er noen av mine
@@ -37,4 +40,3 @@ export default function PictureGallerySection() {
     </section>
   );
 }
-

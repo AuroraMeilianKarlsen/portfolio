@@ -385,23 +385,23 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
         cactusVariant =
           cactusVariants[Math.floor(Math.random() * cactusVariants.length)];
 
-        // Sett størrelser basert på variant 
+        // Sett størrelser basert på variant
         switch (cactusVariant) {
           case 'big':
-            width = 40; 
+            width = 40;
             height = 60;
             break;
           case 'round':
-            width = 35; 
-            height = 45; 
+            width = 35;
+            height = 45;
             break;
           case 'small':
-            width = 28; 
-            height = 42; 
+            width = 28;
+            height = 42;
             break;
           case 'bigAndSmall':
-            width = 45; 
-            height = 60; 
+            width = 45;
+            height = 60;
         }
       } else {
         // Fugl størrelser
