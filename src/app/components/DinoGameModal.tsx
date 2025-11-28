@@ -264,7 +264,7 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       } else if (dino.ducking) {
         // Dukker: alterner mellom duckHøyreOpp og duckVenstreOpp for animasjon
         animationFrame++;
-        if (animationFrame % 15 < 7) {
+        if (animationFrame % 14 < 7) {
           imageToDraw = duckHøyreOppImage;
         } else {
           imageToDraw = duckVenstreOppImage;
@@ -279,8 +279,8 @@ export default function DinoGameModal({ isOpen, onClose }: DinoGameModalProps) {
       } else {
         // Løpende: alterner mellom høyreBenOpp og venstreBenOpp for bedre animasjon
         animationFrame++;
-        // Økt fra 10 til 15 for å gjøre animasjonen litt saktere
-        if (animationFrame % 15 < 7) {
+        // 7+7 frames per syklus
+        if (animationFrame % 14 < 7) {
           imageToDraw = høyreBenOppImage;
         } else {
           imageToDraw = venstreBenOppImage;
